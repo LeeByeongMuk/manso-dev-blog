@@ -19,12 +19,15 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Provider>
-          <div className="container mx-auto">
-            <Suspense>
-              <Layout>{children}</Layout>
-            </Suspense>
-          </div>
+        <Provider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Suspense>
+            <Layout>{children}</Layout>
+          </Suspense>
         </Provider>
       </body>
     </html>
