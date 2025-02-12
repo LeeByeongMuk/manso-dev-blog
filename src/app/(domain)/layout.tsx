@@ -17,18 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body>
-        <Provider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Suspense>
+        <Suspense>
+          <Provider>
             <Layout>{children}</Layout>
-          </Suspense>
-        </Provider>
+          </Provider>
+        </Suspense>
       </body>
     </html>
   );
