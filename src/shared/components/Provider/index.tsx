@@ -10,17 +10,17 @@ import { ThemeProvider } from '@shared/components/Provider/ThemeProvider';
 
 export default function Provider({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <QueryClientProvider client={getQueryClient()}>
+    <QueryClientProvider client={getQueryClient()}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
         {children}
-        <ReactQueryDevtools initialIsOpen={false} />
-        <MSWComponent />
-      </QueryClientProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <MSWComponent />
+    </QueryClientProvider>
   );
 }
