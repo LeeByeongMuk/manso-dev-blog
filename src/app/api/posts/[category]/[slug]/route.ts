@@ -1,0 +1,49 @@
+import { promises as fs } from 'fs';
+import { NextResponse } from 'next/server';
+import path from 'path';
+
+import { PostFactory } from '@lib/posts/postFactory';
+
+const POSTS_DIR = path.join(process.cwd(), 'src/posts');
+
+async function getMdxFiles(dir: string): Promise<string[]> {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const files = await Promise.all(
+    entries.map(async entry => {
+      const fullPath = path.join(dir, entry.name);
+
+      if (entry.isDirectory()) {
+        return await getMdxFiles(fullPath);
+      } else if (entry.name.endsWith('.mdx')) {
+        return fullPath;
+      } else {
+        return [];
+      }
+    })
+  );
+  return files.flat();
+}
+
+export async function GET(
+  _: Request,
+  { params }: { params: { category: string; slug: string } }
+) {
+  try {
+    const { category, slug } = params;
+
+    const mdxFiles = await getMdxFiles(POSTS_DIR);
+    const posts = PostFactory.createList(mdxFiles);
+
+    const post = posts.find(p => {
+      return category === p.category && slug === p.slug;
+    });
+
+    if (!post) {
+      return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(post);
+  } catch {
+    return NextResponse.json({ error: 'Failed to load post' }, { status: 500 });
+  }
+}

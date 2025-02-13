@@ -40,7 +40,7 @@ export class PostFactory {
       .relative(POSTS_PATH, postPath)
       .replace('.mdx', '');
     const [category, slug] = relativePath.split(path.sep);
-    const url = `/blog/${category}/${slug}`;
+    const url = `/post/${category}/${slug}`;
     return { url, slug, category };
   }
 
