@@ -36,8 +36,6 @@ export async function GET(request: Request) {
       new Set(posts.map(post => post.category ?? 'etc'))
     );
 
-    console.log(posts);
-
     let filteredPosts = posts;
     if (categoryQuery && categoryQuery.trim().toLowerCase() !== 'all') {
       filteredPosts = posts.filter(

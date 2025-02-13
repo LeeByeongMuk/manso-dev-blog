@@ -12,23 +12,17 @@ export default function PostList({ posts }: PostListProps) {
     <div className="grid gap-4">
       {posts.length > 0 ? (
         posts.map(post => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="block">
+          <Link key={post.url} href={post.url} className="block">
             <div
               className={cn(
                 'border border-border dark:border-border rounded-lg p-4 shadow-sm bg-card dark:bg-card transition-all hover:shadow-md'
               )}
             >
-              <h2 className="text-xl font-semibold text-foreground dark:text-foreground">
+              <h4 className="text-xl font-semibold text-foreground dark:text-foreground">
                 {post.title}
-              </h2>
+              </h4>
               <p className="text-muted-foreground">{post.description}</p>
-              <p className="text-sm text-muted-foreground">
-                {new Intl.DateTimeFormat('ko-KR', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                }).format(new Date(post.date))}
-              </p>
+              <p className="text-sm text-muted-foreground">{post.dateString}</p>
               <div className="my-2 border-t border-border dark:border-border"></div>
               <p className="text-sm font-medium text-primary dark:text-foreground">
                 Read More →
