@@ -1,4 +1,5 @@
 import { Post } from '@lib/posts/postFactory';
+import MDXRenderer from '@shared/components/MDX/MDXRenderer';
 
 interface PostDetailProps {
   post: Post;
@@ -28,7 +29,7 @@ export default function PostDetail({ post }: PostDetailProps) {
         </div>
       </header>
 
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+      <MDXRenderer content={post.content} />
     </article>
   );
 }
