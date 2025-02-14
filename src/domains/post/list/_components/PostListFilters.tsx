@@ -1,14 +1,20 @@
-interface PostListFiltersProps {
-  categories: string[];
+import { Dispatch, SetStateAction } from 'react';
+
+import useCategories from '@domains/post/list/_hooks/useCatagories';
+
+export interface PostListFiltersProps {
   selectedCategory: string;
-  setSelectedCategory: (category: string) => void;
+  setSelectedCategory: Dispatch<SetStateAction<string>>;
 }
 
 export default function PostListFilters({
-  categories,
   selectedCategory,
   setSelectedCategory,
 }: PostListFiltersProps) {
+  const { data } = useCategories();
+
+  const categories = data?.categories || [];
+
   return (
     <div className="mb-6">
       <select
