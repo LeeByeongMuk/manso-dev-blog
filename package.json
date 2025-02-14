@@ -10,7 +10,8 @@
     "lint:fix": "next lint --fix",
     "prettier": "prettier --check ./src",
     "prettier:fix": "prettier --write ./src",
-    "test:coverage": "jest --passWithNoTests --coverage=false",
+    "test": "jest --coverage=false",
+    "test:coverage": "jest --coverage",
     "tsc": "tsc",
     "mock": "npx tsx watch ./src/lib/mocks/server.ts"
   },
