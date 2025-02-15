@@ -55,3 +55,6 @@ jobs:
 
       - name: Build the project
         run: npm run build
+
+      - name: Start Next.js server
+        run: npm run start & sleep 5
