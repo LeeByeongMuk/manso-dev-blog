@@ -50,21 +50,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: env setting
-        run: |
-          touch .env
-          echo "NEXT_PUBLIC_BASE_URL=${{ secrets.APP_API_URL }}" >> .env
-        env:
-          NEXT_PUBLIC_BASE_URL: ${{ secrets.APP_API_URL }}
-
       - name: Install the project dependencies
-        run: rm -rf node_modules && npm ci
-
-      - name: Build the project
-        run: npm run build
-
-      - name: Start Next.js server
-        run: npm run start & sleep 5
+        run: npm install
 
       - name: Build the project
         run: npm run build

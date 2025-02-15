@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { BASE_URL } from '@lib/api/constants';
+import { BASE_URL } from '@lib/api/url';
 
 export type CategoriesResponse = {
   categories: string[];

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { BASE_URL } from '@lib/api/constants';
+import { BASE_URL } from '@lib/api/url';
 import { Post } from '@lib/posts/postFactory';
 
 interface Props {
