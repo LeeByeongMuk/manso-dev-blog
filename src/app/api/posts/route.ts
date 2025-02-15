@@ -4,7 +4,7 @@ import path from 'path';
 
 import { PostFactory } from '@lib/posts/postFactory';
 
-export const POSTS_DIR = path.join(process.cwd(), 'src/posts');
+const POSTS_DIR = path.join(process.cwd(), 'src/posts');
 
 async function getMdxFiles(dir: string): Promise<string[]> {
   const entries = await fs.readdir(dir, { withFileTypes: true });
