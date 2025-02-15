@@ -33,11 +33,12 @@ jobs:
 
   build:
     needs: lint
+    environment: ${{ github.event_name == 'pull_request' && 'Preview' || github.ref == 'refs/heads/develop' && 'Development' }}
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [ 20.x ]
+        node-version: [ 20.17.0 ]
 
     steps:
       - uses: actions/checkout@v4
@@ -50,7 +51,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install the project dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build the project
         run: npm run build

@@ -1,5 +1,5 @@
 {
-  "name": "next-starter-kit",
+  "name": "manso-dev",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
     "lint:fix": "next lint --fix",
     "prettier": "prettier --check ./src",
     "prettier:fix": "prettier --write ./src",
-    "test": "jest",
+    "test": "jest --coverage=false",
+    "test:coverage": "jest --coverage",
     "tsc": "tsc",
     "mock": "npx tsx watch ./src/lib/mocks/server.ts"
   },

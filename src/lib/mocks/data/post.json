@@ -1,117 +1,33 @@
 {
   "getAll": {
-    "data": [
+    "posts": [
       {
-        "id": 1,
-        "type": "notice",
-        "title": "Title 1",
-        "hit": 0,
-        "created_at": "2021-09-01T00:00:00",
-        "user": {
-          "id": 1,
-          "name": "name",
-          "nickname": "nickname"
-        }
-      },
-      {
-        "id": 2,
-        "type": "notice",
-        "title": "Title 2",
-        "hit": 0,
-        "created_at": "2021-09-01T00:00:00",
-        "user": {
-          "id": 1,
-          "name": "name",
-          "nickname": "nickname"
-        }
-      },
-      {
-        "id": 3,
-        "type": "notice",
-        "title": "Title 3",
-        "hit": 0,
-        "created_at": "2021-09-01T00:00:00",
-        "user": {
-          "id": 1,
-          "name": "name",
-          "nickname": "nickname"
-        }
-      },
-      {
-        "id": 4,
-        "type": "notice",
-        "title": "Title 4",
-        "hit": 0,
-        "created_at": "2021-09-01T00:00:00",
-        "user": {
-          "id": 1,
-          "name": "name",
-          "nickname": "nickname"
-        }
-      },
-      {
-        "id": 5,
-        "type": "notice",
-        "title": "Title 5",
-        "hit": 0,
-        "created_at": "2021-09-01T00:00:00",
-        "user": {
-          "id": 1,
-          "name": "name",
-          "nickname": "nickname"
-        }
+        "title": "React Suspense 이해하기",
+        "slug": "react-suspense",
+        "description": "React Suspense의 기본 개념과 사용법을 알아봅니다.",
+        "category": "React",
+        "tags": ["React", "Suspense", "Next.js"],
+        "dateString": "2024년 2월 20일",
+        "readingMinutes": 5
       }
-    ],
-    "meta": {
-      "current_page": 1,
-      "last_page": 1,
-      "total": 1
-    }
+    ]
   },
-  "create": {
-    "ok": true,
-    "message": "success",
-    "data": {
-      "id": 1
-    }
+  "getCategories": {
+    "categories": [
+      {
+        "name": "React",
+        "slug": "react"
+      }
+    ]
   },
-  "update": {
-    "ok": true,
-    "message": "success",
-    "data": {
-      "id": 1
-    }
-  },
-  "getEdit": {
-    "ok": true,
-    "message": "success",
-    "data": {
-      "id": 1,
-      "title": "title",
-      "contents": "contents",
-      "type": "notice",
-      "is_open": true
-    }
-  },
-  "getById": {
-    "ok": true,
-    "message": "success",
-    "data": {
-      "contents": "contents",
-      "created_at": "2021-09-01T00:00:00",
-      "hit": 0,
-      "id": 1,
-      "is_editable": false,
-      "title": "title",
-      "type": "notice",
-      "user_name": "name"
-    }
-  },
-  "delete": {
-    "ok": true,
-    "message": "success",
-    "data": {
-      "id": 1
-    }
+  "getPostDetail": {
+    "title": "React Suspense 이해하기",
+    "slug": "react-suspense",
+    "description": "React Suspense의 기본 개념과 사용법을 알아봅니다.",
+    "category": "React",
+    "tags": ["React", "Suspense", "Next.js"],
+    "dateString": "2024년 2월 20일",
+    "readingMinutes": 5,
+    "content": "## React Suspense 개요\n\nReact의 최신 기능 중 하나인 Suspense를 사용하면 데이터 로딩을 간편하게 관리할 수 있습니다..."
   }
 }
