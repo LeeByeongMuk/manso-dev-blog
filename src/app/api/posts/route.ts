@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
-import { POSTS_DIR } from '@lib/api/constants';
-import { getMdxFiles } from '@lib/api/utils';
+import { POSTS_DIR } from '@lib/api/constants.server';
+import { getMdxFiles } from '@lib/api/utils.server';
 import { PostFactory } from '@lib/posts/postFactory';
 
 export async function GET(request: Request) {
