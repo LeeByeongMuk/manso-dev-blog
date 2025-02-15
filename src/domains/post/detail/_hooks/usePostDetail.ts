@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { BASE_URL } from '@lib/api/constants';
 import { Post } from '@lib/posts/postFactory';
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 
 async function fetchPostDetail({ category, slug }: Props): Promise<Post> {
   const res = await fetch(
-    `/api/posts/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`
+    `${BASE_URL}/api/posts/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`
   );
   if (!res.ok) {
     throw new Error('Failed to fetch post');
