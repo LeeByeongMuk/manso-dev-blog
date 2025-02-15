@@ -50,7 +50,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install the project dependencies
-        run: npm ci
+        run: rm -rf node_modules && npm ci
 
       - name: Build the project
         run: npm run build
