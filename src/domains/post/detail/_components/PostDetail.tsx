@@ -1,11 +1,16 @@
-import { Post } from '@lib/posts/postFactory';
+'use client';
+
+import { useParams } from 'next/navigation';
+
+import usePostDetail from '@domains/post/detail/_hooks/usePostDetail';
 import MDXRenderer from '@shared/components/MDX/MDXRenderer';
 
-interface PostDetailProps {
-  post: Post;
-}
+export default function PostDetail() {
+  const params = useParams();
+  const category = params.category as string;
+  const slug = params.slug as string;
+  const { data: post } = usePostDetail({ category, slug });
 
-export default function PostDetail({ post }: PostDetailProps) {
   return (
     <article className="prose prose-neutral dark:prose-invert w-full">
       <header className="mb-4 border-b border-border pb-4">
