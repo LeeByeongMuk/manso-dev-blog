@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 
 import PostListFilters from '@domains/post/list/_components/PostListFilters';
 
