@@ -24,10 +24,12 @@ async function getMdxFiles(dir: string): Promise<string[]> {
   return files.flat();
 }
 
-export async function GET(request: Request) {
+export async function GET(
+  _: Request,
+  { params }: { params: { category: string } }
+) {
   try {
-    const { searchParams } = new URL(request.url);
-    const categoryQuery = searchParams.get('category');
+    const { category } = params;
 
     const mdxFiles = await getMdxFiles(POSTS_DIR);
     const posts = PostFactory.createList(mdxFiles);
@@ -37,10 +39,9 @@ export async function GET(request: Request) {
     );
 
     let filteredPosts = posts;
-    if (categoryQuery && categoryQuery.trim().toLowerCase() !== 'all') {
+    if (category && category.trim().toLowerCase() !== 'all') {
       filteredPosts = posts.filter(
-        post =>
-          post.category?.toLowerCase() === categoryQuery.trim().toLowerCase()
+        post => post.category?.toLowerCase() === category.trim().toLowerCase()
       );
     }
 

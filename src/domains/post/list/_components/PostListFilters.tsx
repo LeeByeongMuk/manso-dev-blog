@@ -1,5 +1,3 @@
-'use client';
-
 import { Dispatch, SetStateAction } from 'react';
 
 import useCategories from '@domains/post/list/_hooks/useCatagories';
