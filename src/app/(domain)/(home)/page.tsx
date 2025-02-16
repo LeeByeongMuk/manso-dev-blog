@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-import PostListContainer from '@domains/post/list/_components/PostListContainer';
 import PostListFiltersContainer from '@domains/post/list/_components/PostListFiltersContainer';
 
 export default function Home() {
@@ -17,7 +16,7 @@ export default function Home() {
         setSelectedCategory={setSelectedCategory}
       />
 
-      <PostListContainer category={selectedCategory} />
+      {/*<PostListContainer category={selectedCategory} />*/}
     </section>
   );
 }
