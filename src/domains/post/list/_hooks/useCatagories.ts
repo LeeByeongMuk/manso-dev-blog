@@ -7,7 +7,7 @@ export type CategoriesResponse = {
 };
 
 async function fetchCategories(): Promise<CategoriesResponse> {
-  const url = `${BASE_URL}/api/posts/categories`;
+  const url = `/api/posts/categories`;
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
