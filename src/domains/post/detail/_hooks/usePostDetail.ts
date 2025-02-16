@@ -9,7 +9,7 @@ interface Props {
 
 async function fetchPostDetail({ category, slug }: Props): Promise<Post> {
   const res = await fetch(
-    `/api/posts/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`
+    `http://localhost:3000/api/posts/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`
   );
   if (!res.ok) {
     throw new Error('Failed to fetch post');
