@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { BASE_URL } from '@lib/api/url';
 
@@ -13,7 +13,7 @@ async function fetchCategories(): Promise<CategoriesResponse> {
 }
 
 export default function useCategories() {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: ['categories'],
     queryFn: () => fetchCategories(),
     staleTime: 1000 * 60 * 5,

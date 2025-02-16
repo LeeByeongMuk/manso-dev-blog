@@ -11,7 +11,9 @@ export default function PostListFilters({
   selectedCategory,
   setSelectedCategory,
 }: PostListFiltersProps) {
-  const { data: categories } = useCategories();
+  const { data } = useCategories();
+
+  const categories = data ?? [];
 
   return (
     <div className="mb-6">
