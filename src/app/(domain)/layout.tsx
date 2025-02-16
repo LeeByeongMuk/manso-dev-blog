@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import Layout from '@shared/components/Layout';
 import Provider from '@shared/components/Provider';
@@ -19,11 +19,9 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body>
-        <Suspense>
-          <Provider>
-            <Layout>{children}</Layout>
-          </Provider>
-        </Suspense>
+        <Provider>
+          <Layout>{children}</Layout>
+        </Provider>
       </body>
     </html>
   );
