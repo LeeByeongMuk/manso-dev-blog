@@ -2,9 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { BASE_URL } from '@lib/api/url';
 
-export type CategoriesResponse = {
-  categories: string[];
-};
+export type CategoriesResponse = string[];
 
 async function fetchCategories(): Promise<CategoriesResponse> {
   const res = await fetch(`${BASE_URL}/api/posts/categories`);
