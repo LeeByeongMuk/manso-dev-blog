@@ -34,10 +34,6 @@ export async function GET(
     const mdxFiles = await getMdxFiles(POSTS_DIR);
     const posts = PostFactory.createList(mdxFiles);
 
-    const allCategories = Array.from(
-      new Set(posts.map(post => post.category ?? 'etc'))
-    );
-
     let filteredPosts = posts;
     if (category && category.trim().toLowerCase() !== 'all') {
       filteredPosts = posts.filter(
@@ -47,7 +43,6 @@ export async function GET(
 
     return NextResponse.json({
       posts: filteredPosts,
-      categories: allCategories,
     });
   } catch {
     return NextResponse.json(
