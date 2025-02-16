@@ -27,5 +27,5 @@
 ```bash
 npm install
 cp .env.example .env
-docker compose up -
+docker compose up -d
 ```
