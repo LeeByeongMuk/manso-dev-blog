@@ -8,7 +8,6 @@ export type CategoriesResponse = {
 
 async function fetchCategories(): Promise<CategoriesResponse> {
   const res = await fetch(`${BASE_URL}/api/posts/categories`);
-
   if (!res.ok) {
     throw new Error('Failed to fetch categories');
   }
@@ -18,6 +17,7 @@ async function fetchCategories(): Promise<CategoriesResponse> {
 export default function useCategories() {
   return useSuspenseQuery({
     queryKey: ['categories'],
-    queryFn: fetchCategories,
+    queryFn: () => fetchCategories(),
+    staleTime: 1000 * 60 * 5,
   });
 }
