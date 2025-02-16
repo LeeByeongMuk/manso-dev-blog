@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 
-import PostListContainer from '@domains/post/list/_components/PostListContainer';
+import PostList from '@domains/post/list/_components/PostList';
+import PostListSkeleton from '@domains/post/list/_components/PostList.Skeleton';
 
 export default function Home() {
-  const [selectedCategory] = useState('all');
+  const [selectedCategory] = useState<string>('all');
 
   return (
     <section className="mx-auto max-w-3xl bg-background px-6 py-10 text-foreground">
@@ -16,7 +17,9 @@ export default function Home() {
       {/*  setSelectedCategory={setSelectedCategory}*/}
       {/*/>*/}
 
-      <PostListContainer category={selectedCategory} />
+      <Suspense fallback={<PostListSkeleton />}>
+        <PostList category={selectedCategory} />
+      </Suspense>
     </section>
   );
 }
