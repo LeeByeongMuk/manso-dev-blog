@@ -3,10 +3,6 @@ function getBaseURL() {
     return `https://${process.env.VERCEL_URL}`;
   }
 
-  if (process.env.CI) {
-    return '';
-  }
-
   if (process.env.NEXT_PUBLIC_BASE_URL) {
     return process.env.NEXT_PUBLIC_BASE_URL;
   }
