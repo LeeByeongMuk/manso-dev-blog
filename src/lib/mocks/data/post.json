@@ -6,26 +6,31 @@
         "slug": "react-suspense",
         "description": "React Suspense의 기본 개념과 사용법을 알아봅니다.",
         "category": "React",
-        "tags": ["React", "Suspense", "Next.js"],
+        "tags": [
+          "React",
+          "Suspense",
+          "Next.js"
+        ],
         "dateString": "2024년 2월 20일",
         "readingMinutes": 5
       }
     ]
   },
-  "getCategories": {
-    "categories": [
-      {
-        "name": "React",
-        "slug": "react"
-      }
-    ]
-  },
+  "getCategories": [
+    "React",
+    "JavaScript",
+    "TypeScript"
+  ],
   "getPostDetail": {
     "title": "React Suspense 이해하기",
     "slug": "react-suspense",
     "description": "React Suspense의 기본 개념과 사용법을 알아봅니다.",
     "category": "React",
-    "tags": ["React", "Suspense", "Next.js"],
+    "tags": [
+      "React",
+      "Suspense",
+      "Next.js"
+    ],
     "dateString": "2024년 2월 20일",
     "readingMinutes": 5,
     "content": "## React Suspense 개요\n\nReact의 최신 기능 중 하나인 Suspense를 사용하면 데이터 로딩을 간편하게 관리할 수 있습니다..."

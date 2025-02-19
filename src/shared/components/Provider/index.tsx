@@ -20,10 +20,10 @@ export default function Provider({ children }: { children: React.ReactNode }) {
           disableTransitionOnChange
         >
           {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+          <MSWComponent />
         </ThemeProvider>
       </ReactQueryStreamedHydration>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <MSWComponent />
     </QueryClientProvider>
   );
 }
