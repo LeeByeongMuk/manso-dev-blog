@@ -16,6 +16,6 @@ export default function useCategories() {
   return useSuspenseQuery({
     queryKey: ['categories'],
     queryFn: () => fetchCategories(),
-    staleTime: 1000 * 60 * 5,
+    staleTime: 0,
   });
 }
