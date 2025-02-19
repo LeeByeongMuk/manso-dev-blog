@@ -9,7 +9,6 @@ on:
 
 jobs:
   build:
-    environment: ${{ github.event_name == 'pull_request' && 'Preview' || github.ref == 'refs/heads/develop' && 'Development' }}
     runs-on: ubuntu-latest
 
     strategy:
