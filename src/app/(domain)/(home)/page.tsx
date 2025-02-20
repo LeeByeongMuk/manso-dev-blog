@@ -1,9 +1,21 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
-import PostListContainer from '@domains/post/list/_components/PostListContainer';
-import PostListFiltersContainer from '@domains/post/list/_components/PostListFiltersContainer';
+const PostListContainer = dynamic(
+  () => import('@domains/post/list/_components/PostListContainer'),
+  {
+    ssr: false,
+  }
+);
+
+const PostListFiltersContainer = dynamic(
+  () => import('@domains/post/list/_components/PostListFiltersContainer'),
+  {
+    ssr: false,
+  }
+);
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('all');
