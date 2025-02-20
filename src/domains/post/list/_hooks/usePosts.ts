@@ -9,14 +9,12 @@ export type PostsResponse = {
 };
 
 async function fetchPosts(category: string): Promise<PostsResponse> {
-  console.log('BASE_URL', BASE_URL);
   const url = `${BASE_URL}/api/posts?category=${encodeURIComponent(category)}`;
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  console.log('res', res);
 
   if (!res.ok) {
     throw new Error('Failed to fetch posts');
