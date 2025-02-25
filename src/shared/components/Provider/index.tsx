@@ -2,6 +2,7 @@
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Analytics } from '@vercel/analytics/react';
 import React from 'react';
 
 import { getQueryClient } from '@lib/tanstackQuery/client';
@@ -19,6 +20,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
         {children}
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
+      <Analytics />
     </QueryClientProvider>
   );
 }
