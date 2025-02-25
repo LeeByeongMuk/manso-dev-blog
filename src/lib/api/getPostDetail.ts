@@ -16,6 +16,9 @@ export async function fetchPostDetail({
       cache: 'no-store',
     }
   );
+
+  console.log(res);
+
   if (!res.ok) {
     throw new Error('Failed to fetch post');
   }
