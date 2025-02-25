@@ -1,12 +1,12 @@
-'use client';
-
 import PostDetailHeader from '@domains/post/detail/_components/PostDetailHeader';
-import usePostDetail from '@domains/post/detail/_hooks/usePostDetail';
+import { Post } from '@lib/posts/postFactory';
 import MDXRenderer from '@shared/components/MDX/MDXRenderer';
 
-export default function PostDetail() {
-  const { data: post } = usePostDetail();
+interface PostDetailProps {
+  post: Post;
+}
 
+export default function PostDetail({ post }: PostDetailProps) {
   return (
     <article className="prose prose-neutral dark:prose-invert w-full">
       <PostDetailHeader post={post} />

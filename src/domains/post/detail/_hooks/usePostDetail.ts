@@ -3,23 +3,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 
-import { BASE_URL } from '@lib/api/url';
-import { Post } from '@lib/posts/postFactory';
-
-interface Props {
-  category: string;
-  slug: string;
-}
-
-async function fetchPostDetail({ category, slug }: Props): Promise<Post> {
-  const res = await fetch(
-    `${BASE_URL}/api/posts/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`
-  );
-  if (!res.ok) {
-    throw new Error('Failed to fetch post');
-  }
-  return res.json();
-}
+import { fetchPostDetail } from '@lib/api/getPostDetail';
 
 export default function usePostDetail() {
   const params = useParams();
