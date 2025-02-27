@@ -10,6 +10,7 @@ export async function fetchPostDetail({
   category,
   slug,
 }: Props): Promise<Post> {
+  console.log(BASE_URL);
   const res = await fetch(
     `${BASE_URL}/api/posts/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`,
     {
