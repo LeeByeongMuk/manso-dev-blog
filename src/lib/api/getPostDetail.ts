@@ -11,7 +11,6 @@ export async function fetchPostDetail({
   slug,
 }: Props): Promise<Post> {
   try {
-    console.log(BASE_URL);
     const res = await fetch(
       `${BASE_URL}/api/posts/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`,
       {
@@ -19,11 +18,6 @@ export async function fetchPostDetail({
       }
     );
 
-    console.log(res);
-
-    if (!res.ok) {
-      throw new Error('Failed to fetch post');
-    }
     return res.json();
   } catch (error) {
     console.error(error);
