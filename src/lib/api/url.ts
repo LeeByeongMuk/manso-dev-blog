@@ -1,7 +1,7 @@
 function getBaseURL() {
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
+  // if (process.env.VERCEL_URL) {
+  //   return `https://${process.env.VERCEL_URL}`;
+  // }
 
   // if (process.env.CI) {
   //   return 'http://127.0.0.1:3000';
