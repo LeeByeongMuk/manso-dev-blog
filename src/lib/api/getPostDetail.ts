@@ -10,14 +10,17 @@ export async function fetchPostDetail({
   category,
   slug,
 }: Props): Promise<Post> {
-  const res = await fetch(
-    `${BASE_URL}/api/posts/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`,
-    {
-      cache: 'no-store',
-    }
-  );
-  if (!res.ok) {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/api/posts/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`,
+      {
+        cache: 'no-store',
+      }
+    );
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
     throw new Error('Failed to fetch post');
   }
-  return res.json();
 }
