@@ -1,7 +1,7 @@
 export declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      APP_PORT: string;
+      NEXT_PUBLIC_BASE_URL: string;
     }
   }
 }
