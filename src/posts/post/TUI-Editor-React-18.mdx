@@ -1,0 +1,101 @@
+---
+title: TUI Editor React 18 의존성 오류
+date: 2025-03-03
+description: React 18과 TUI Editor 간의 충돌 문제와 해결 방법
+thumbnail: /posts/post/TUI-Editor-React-18/thumbnail.jpg
+tags: ["react", "tui-editor", "overrides"]
+---
+
+# TUI Editor React 18 의존성 오류
+
+- [Toast UI Editor GitHub](https://github.com/nhn/tui.editor)
+- [NPM 공식 문서 – overrides](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#overrides)
+
+프로젝트에서 **WYSIWYG 에디터**가 필요하여 `Toast UI Editor`를 도입하려 했지만, **React 18과의 의존성 문제**로 인해 충돌이 발생했습니다. 이 글에서는 **해결 과정과 적용 방법**을 공유합니다.
+
+---
+
+## Toast UI Editor란?
+
+[Toast UI Editor](https://github.com/nhn/tui.editor)는 마크다운을 지원하는 강력한 **WYSIWYG 에디터**로, 별도의 React 컴포넌트 라이브러리도 제공합니다.
+
+**주요 특징**
+- 마크다운(Markdown) 및 WYSIWYG 지원
+- 코드 블록 하이라이팅
+- 플러그인 확장 가능
+- React 및 Vanilla JS에서 사용 가능
+
+👉 하지만, 설치 과정에서 **React 18과의 의존성 충돌 문제가 발생**했습니다.
+
+---
+
+## 문제 발생 – React 18과의 충돌
+
+### 설치 중 오류 발생
+
+Toast UI Editor를 설치하려고 했지만, `peerDependencies` 충돌로 인해 **React 버전 관련 오류**가 발생했습니다.
+
+**오류 메시지 예시**
+
+![](/posts/post/TUI-Editor-React-18/error_message.png)
+
+**원인 분석**
+- Toast UI Editor의 **`peerDependencies`** 가 **React 17**로 고정
+- 프로젝트는 **React 18**을 사용 중
+- **의존성 충돌로 인해 정상 설치 불가**
+
+💡 **확인 방법**: `package.json`에서 `peerDependencies` 확인
+🔗 [Toast UI React Editor - package.json](https://github.com/nhn/tui.editor/blob/master/apps/react-editor/package.json)
+
+![](/posts/post/TUI-Editor-React-18/peer_dependencies.png)
+
+---
+
+## 해결 방법 – `overrides` 활용하여 의존성 강제 수정
+
+React 18과의 충돌을 해결하기 위해 **`package.json`의 `overrides` 기능**을 활용했습니다.
+
+**`overrides`란?**
+- `npm`에서 특정 패키지의 의존성을 **강제 변경**하는 기능
+- `npm 8+` 이상에서 지원됨
+
+### 해결 코드 (`package.json`)
+
+```json
+{
+  "overrides": {
+    "@toast-ui/react-editor": {
+      "react": "^18",
+      "react-dom": "^18"
+    }
+  }
+}
+```
+
+### 적용 방법
+
+1. `package.json`에 **`overrides` 추가**
+2. 기존 `node_modules` 및 `package-lock.json` 삭제
+    ```bash
+    rm -rf node_modules package-lock.json
+   ```
+3. 패키지 재설치
+    ```bash
+    npm install
+    ```
+
+
+✅ **결과**: React 18 환경에서도 `Toast UI Editor`가 정상적으로 설치됨
+
+---
+
+## ✅ 마무리
+
+React 18에서 **Toast UI Editor**를 설치할 때 발생한 **의존성 충돌**을 `overrides`를 활용해 해결했습니다.
+
+**핵심 정리**
+- `peerDependencies` 충돌로 **설치 오류 발생**
+- `overrides` 옵션을 이용해 **React 버전 강제 변경**
+- **npm 재설치 후 정상 동작 확인**
+
+이제, **WYSIWYG 에디터를 React 18에서도 안정적으로 사용 가능**합니다! 🚀
