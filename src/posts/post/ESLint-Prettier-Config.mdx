@@ -1,0 +1,200 @@
+---
+title: "ESLint와 Prettier 설정하기"
+date: "2025-02-13"
+description: "Next.js + TypeScript 환경에서 ESLint와 Prettier를 설정하고 사용하는 방법"
+thumbnail: "/posts/post/ESLint-Prettier-Config/thumbnail.jpg"
+tags: ["eslint", "prettier", "typescript", "nextjs"]
+---
+
+# ESLint와 Prettier 설정하기
+
+- [ESLint 공식 사이트](https://eslint.org/)
+- [Prettier 공식 사이트](https://prettier.io/)
+- [Next.js ESLint 설정](https://nextjs.org/docs/app/api-reference/config/eslint)
+- [Tailwind CSS ESLint Plugin](https://github.com/francoismassart/eslint-plugin-tailwindcss)
+
+프로젝트에서 **코드 품질과 일관성을 유지**하기 위해 다양한 도구를 찾아보던 중, `ESLint`와 `Prettier`를 활용하면 효과적으로 코드 스타일을 관리할 수 있다는 점을 알게 되었습니다.
+
+이 글에서는 **Next.js + TypeScript 환경에서 ESLint와 Prettier를 적용하는 방법**을 정리합니다.
+
+---
+
+## 패키지 설치
+
+먼저, `ESLint`의 기본 라이브러리를 설치한 후, **TypeScript, Next.js, React 환경에 맞는 규칙을 추가**합니다.
+
+```bash
+npm install -D eslint eslint-config-next
+```
+
+📌 **참고:** [Next.js ESLint 공식 문서](https://nextjs.org/docs/app/api-reference/config/eslint)
+
+### Prettier와 통합을 위한 패키지 추가
+
+ESLint와 **Prettier**를 함께 사용할 경우, 스타일 관련 규칙 충돌을 방지하기 위해 아래 패키지를 추가로 설치해야 합니다.
+
+```bash
+npm install -D eslint-config-prettier eslint-plugin-prettier
+```
+
+> Prettier 설정 방법은 아래에서 자세히 다룹니다.
+
+### Tailwind CSS와 ESLint 연동 (선택)
+
+Tailwind CSS를 사용하고 있다면, **ESLint 플러그인**을 추가로 설치하여 클래스 순서를 정리할 수 있습니다.
+
+```bash
+npm install -D eslint-plugin-tailwindcss
+```
+
+---
+
+### ESLint 설정 파일 추가
+
+프로젝트 루트에 `.eslintrc.json` 파일을 생성하고 설정 합니다.
+
+```bash
+touch .eslintrc.json
+```
+
+**.eslintrc.json**
+
+```json
+{
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "no-alert": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": [
+      "warn"
+    ],
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          [
+            "builtin",
+            "external"
+          ],
+          "internal",
+          "parent",
+          [
+            "sibling",
+            "index"
+          ],
+          "object"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "complexity": "warn"
+  }
+}
+```
+
+---
+
+## Prettier 설치 및 설정
+
+Prettier는 **코드 스타일을 자동으로 포맷팅**하는 도구입니다.
+
+### Prettier 설치
+
+ESLint와의 충돌을 방지하기 위해 `eslint-config-prettier`, `eslint-plugin-prettier` 등을 함께 설치합니다.
+
+```bash
+npm install -D prettier
+```
+
+### Prettier 설정 파일 추가
+
+프로젝트 루트에 `.prettierrc` 파일을 생성한 후, 다음과 같이 설정합니다.
+
+```bash
+touch .prettierrc
+```
+
+```json
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "avoid",
+  "trailingComma": "es5"
+}
+```
+
+---
+
+## NPM 스크립트 추가
+
+`package.json` 파일에 ESLint와 Prettier를 실행할 수 있는 스크립트를 추가합니다.
+
+```json
+{
+  "scripts": {
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "prettier": "prettier --check ./src",
+    "prettier:fix": "prettier --write ./src"
+  }
+}
+```
+
+이제 다음 명령어로 코드를 검사하고 자동 수정할 수 있습니다.
+
+```bash
+npm run lint         # ESLint 검사
+npm run lint:fix     # ESLint 자동 수정
+npm run prettier     # Prettier 검사
+npm run prettier:fix # Prettier 자동 수정
+```
+
+---
+
+## IDE 설정 (WebStorm)
+
+WebStorm의 설정을 변경하면 **코드를 저장할 때 자동으로 ESLint와 Prettier를 적용**할 수 있습니다.
+
+### ESLint 설정
+
+1. `Preferences` (`Cmd + ,`)로 이동
+2. `Languages & Frameworks > JavaScript > Code Quality Tools > ESLint`로 이동
+3. `Automatic ESLint configuration` 선택
+
+### Prettier 설정
+
+1. `Preferences` (`Cmd + ,`)로 이동
+2. `Languages & Frameworks > JavaScript > Prettier`로 이동
+3. `On code reformat` 및 `On save` 체크박스 선택
+
+---
+
+## ✅ 마무리
+
+이제 **Next.js + TypeScript 환경에서 ESLint와 Prettier를 적용하는 방법**을 정리했습니다.
+
+설정을 마친 후에는 `npm run lint && npm run prettier` 명령어로 정상적으로 적용되었는지 확인해 보세요.
+
+**ESLint를 활용하여 코드 품질을 유지하고, Prettier로 코드 스타일을 통일**하면 협업 과정에서도 코드 일관성을 유지할 수 있습니다.
+```
