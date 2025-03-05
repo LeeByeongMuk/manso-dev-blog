@@ -12,3 +12,4 @@ Dockerfile
 .idea
 .yarn
 .pnp.*
+/src/posts/**/*.mdx
