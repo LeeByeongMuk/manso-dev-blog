@@ -14,3 +14,4 @@ Dockerfile
 .pnp.*
 jest.setup.ts
 jest.polyfills.js
+/src/posts/**/*.mdx
